@@ -8,8 +8,6 @@ library(leaflet)
 library(geosphere)
 library(lubridate)
 
-setwd("C:\\Users\\elida\\OneDrive\\Documentos\\Renan\\R\\Appsilon/")
-
 # loading the data
 data <- fread("data/ships.csv", encoding = "UTF-8")
 
@@ -46,20 +44,23 @@ filterName <- function(type){
   vselect$SHIPNAME %>% unique()
 }
 
-# filterNameID <- function(ID){
-#   vselect <- vessels %>% filter(SHIP_ID == ID) 
-#   vselect$SHIPNAME
-# }
 
 # Server Module for vessel selection
-vesselServer <- function(id) {
+vesselServerType <- function(id) {
   moduleServer(id, function(input, output, session) {
-observeEvent(input$type, {
-  update_dropdown_input (session, "shipname", choices = filterName(input$type))
+    observeEvent(input$type, {
+      update_dropdown_input (session, "shipname", choices = filterName(input$type))
     })
+  })
+}
+
+# Server Module for vessel selection
+vesselServerName <- function(id) {
+  moduleServer(id, function(input, output, session) {
     observeEvent(input$shipname, {
       update_dropdown_input (session, "shipid", choices = filterID(input$shipname))
     })
+    
   })
 }
 
@@ -311,13 +312,13 @@ titleServer <- function(id) {
       shipType <- shipType(input$type)
     })
     output$title <- renderText({
-      
       paste0(titleFoo(shipID(),shipName(),shipType()))
       
     })
     
   })
 }
+
 
 # function that generate the title's text
 titleFoo <- function(shipID,shipName,shipType){
@@ -386,7 +387,8 @@ server <- shinyServer(function(input, output, session) {
   titleServer("ships")
   mapServer("ships")
   noteServer("ships")
-  vesselServer("ships")
+  vesselServerType("ships")
+  vesselServerName("ships")
   
 
 })
