@@ -1,0 +1,37 @@
+.ui.search.dropdown {
+    cursor: pointer;
+    display: inline-block;
+    min-height: 1em;
+    outline: none;
+    border: none;
+    vertical-align: baseline;
+    background: #E0E1E2 none;
+    color: rgba(0, 0, 0, 0.7);
+    font-family: 'Lato', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    margin: 0em 0.25em 0em 0em;
+    padding: 0.78571429em 1.5em 0.78571429em;
+    text-transform: none;
+    text-shadow: none;
+    font-weight: bold;
+    line-height: 1em;
+    font-style: normal;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 0.28571429rem;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.leaflet-right .leaflet-control {
+    font-size: 12px;
+}
+
+body {
+    align-items: center;
+    justify-content: center;
+    background-color: #e3e7e9;
+    display: block;
+    margin: auto!important;
+    min-height: 100vh;
+    padding-top: 8rem;
+    max-width: 1200px
+}
