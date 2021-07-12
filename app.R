@@ -216,7 +216,7 @@ mapfunction <- function(shipID,shipName,shipType){
       addCircleMarkers(group = "Max Distance",~LON,~LAT,popup = hoverText) %>%
       addLayersControl(
         overlayGroups = c("Max Distance","Path"),options = layersControlOptions(collapsed = FALSE)) %>% 
-      setView(dataMax$LON[1],dataMax$LAT[1], zoom = 12) %>% hideGroup("Path") %>% 
+      hideGroup("Path") %>% 
       addControl(title, position = "topright", className="map-title")
   }
   
